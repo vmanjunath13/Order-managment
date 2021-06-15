@@ -6,7 +6,7 @@ public class OrderItems {
 
     private String itemId;
     private String itemName;
-    private Integer itemQty;
+    private int itemQty;
     private double subtotal;
     private double tax;
     private double total;
@@ -16,12 +16,11 @@ public class OrderItems {
         this.itemId = UUID.randomUUID().toString();
     }
 
-    public OrderItems(String itemName, Integer itemQty, double subtotal, double tax, double total) {
+    public OrderItems(String itemName, int itemQty, double tax, double total) {
         super();
         this.itemId = UUID.randomUUID().toString();
         this.itemName = itemName;
         this.itemQty = itemQty;
-        this.subtotal = subtotal;
         this.tax = tax;
         this.total = total;
     }

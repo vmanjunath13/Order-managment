@@ -22,12 +22,11 @@ public class Order {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Order(OrderStatus status, String customer_id, List<OrderItems> orderItemsList, double orderTotal, List<OrderPayment> orderPayment, Address shippingAddress, ZonedDateTime dateCreated, ZonedDateTime dateUpdated, OrderDelivery orderDelivery) {
+    public Order(OrderStatus status, String customer_id, List<OrderItems> orderItemsList, List<OrderPayment> orderPayment, Address shippingAddress, ZonedDateTime dateCreated, ZonedDateTime dateUpdated, OrderDelivery orderDelivery) {
         this.id = UUID.randomUUID().toString();;
         this.status = status;
         this.customer_id = customer_id;
         this.orderItemsList = orderItemsList;
-        this.orderTotal = orderTotal;
         this.orderPayment = orderPayment;
         this.shippingAddress = shippingAddress;
         this.dateCreated = dateCreated;
