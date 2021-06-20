@@ -1,20 +1,26 @@
 package com.egen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class OrderDelivery {
 
+    @Id
     private String deliveryId;
-    private String deliveryMethod;
+    @Enumerated(EnumType.STRING)
+    private DeliveryMethod deliveryMethod;
     private double deliveryCharges;
 
     public OrderDelivery() {
         this.deliveryId = UUID.randomUUID().toString();
     }
 
-    public OrderDelivery(String deliveryMethod, double deliveryCharges) {
+    public OrderDelivery(double deliveryCharges) {
         this.deliveryId = UUID.randomUUID().toString();
-        this.deliveryMethod = deliveryMethod;
         this.deliveryCharges = deliveryCharges;
     }
 
@@ -26,11 +32,11 @@ public class OrderDelivery {
         this.deliveryId = deliveryId;
     }
 
-    public String getDeliveryMethod() {
+    public DeliveryMethod getDeliveryMethod() {
         return deliveryMethod;
     }
 
-    public void setDeliveryMethod(String deliveryMethod) {
+    public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
         this.deliveryMethod = deliveryMethod;
     }
 

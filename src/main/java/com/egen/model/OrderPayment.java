@@ -1,21 +1,26 @@
 package com.egen.model;
 
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+@Entity
 public class OrderPayment {
 
+    @Id
     private String paymentId;
-    private String paymentMethod;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
     private ZonedDateTime paymentDate;
     private String paymentConfirmationNumber;
+    @OneToOne(cascade = {CascadeType.ALL})
     private Address billingAddress;
 
     public OrderPayment() {
         this.paymentId = UUID.randomUUID().toString();
     }
 
-    public OrderPayment(String paymentMethod, ZonedDateTime paymentDate, String paymentConfirmationNumber, Address billingAddress) {
+    public OrderPayment(PaymentMethod paymentMethod, ZonedDateTime paymentDate, String paymentConfirmationNumber, Address billingAddress) {
         super();
         this.paymentId = UUID.randomUUID().toString();
         this.paymentMethod = paymentMethod;
@@ -32,11 +37,11 @@ public class OrderPayment {
         this.paymentId = paymentId;
     }
 
-    public String getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
-    public void setPaymentMethod(String paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

@@ -1,22 +1,26 @@
 package com.egen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class Address {
 
+    @Id
     private String addressId;
     private String addressLine1;
     private String addressLine2;
     private String city;
     private String state;
-    private int postalCode;
+    private String postalCode;
 
     public Address() {
         super();
         this.addressId = UUID.randomUUID().toString();
     }
 
-    public Address(String addressLine1, String addressLine2, String city, String state, int postalCode) {
+    public Address(String addressLine1, String addressLine2, String city, String state, String postalCode) {
         super();
         this.addressId = UUID.randomUUID().toString();
         this.addressLine1 = addressLine1;
@@ -50,7 +54,7 @@ public class Address {
         this.state = state;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
@@ -70,7 +74,7 @@ public class Address {
         return state;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 

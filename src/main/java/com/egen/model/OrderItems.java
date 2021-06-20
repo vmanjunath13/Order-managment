@@ -1,9 +1,13 @@
 package com.egen.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class OrderItems {
 
+    @Id
     private String itemId;
     private String itemName;
     private int itemQty;

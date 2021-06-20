@@ -1,24 +1,31 @@
 package com.egen.model;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 public class Order {
+
     @Id
     private String id;
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private String customer_id;
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<OrderItems> orderItemsList;
     private double orderTotal;
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<OrderPayment> orderPayment;
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Address shippingAddress;
     private ZonedDateTime dateCreated;
     private ZonedDateTime dateUpdated;
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private OrderDelivery orderDelivery;
 
-    public Order(String id) {
+    public Order() {
         this.id = UUID.randomUUID().toString();
     }
 
