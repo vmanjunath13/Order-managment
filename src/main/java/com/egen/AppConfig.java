@@ -1,5 +1,6 @@
 package com.egen;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -17,4 +18,8 @@ public class AppConfig extends WebMvcConfigurationSupport {
         super.addCorsMappings(corsRegistry);
     }
 
+    public static void main(String[] args) {
+        SpringApplication springApplication = new SpringApplication(AppConfig.class);
+        springApplication.run();
+    }
 }

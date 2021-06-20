@@ -1,7 +1,7 @@
 package com.egen.model;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 public class Order {
 
     @Id
-    private String id;
+    private String orderId;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private String customer_id;
@@ -18,35 +18,24 @@ public class Order {
     private double orderTotal;
     @OneToMany(cascade = {CascadeType.ALL})
     private List<OrderPayment> orderPayment;
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Address shippingAddress;
-    private ZonedDateTime dateCreated;
-    private ZonedDateTime dateUpdated;
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Timestamp dateCreated;
+    private Timestamp dateUpdated;
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private OrderDelivery orderDelivery;
 
     public Order() {
-        this.id = UUID.randomUUID().toString();
+        super();
+        this.orderId = UUID.randomUUID().toString();
     }
 
-    public Order(OrderStatus status, String customer_id, List<OrderItems> orderItemsList, List<OrderPayment> orderPayment, Address shippingAddress, ZonedDateTime dateCreated, ZonedDateTime dateUpdated, OrderDelivery orderDelivery) {
-        this.id = UUID.randomUUID().toString();;
-        this.status = status;
-        this.customer_id = customer_id;
-        this.orderItemsList = orderItemsList;
-        this.orderPayment = orderPayment;
-        this.shippingAddress = shippingAddress;
-        this.dateCreated = dateCreated;
-        this.dateUpdated = dateUpdated;
-        this.orderDelivery = orderDelivery;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderId(String id) {
+        this.orderId = id;
     }
 
     public OrderStatus getStatus() {
@@ -101,7 +90,7 @@ public class Order {
         return dateCreated.toString();
     }
 
-    public void setDateCreated(ZonedDateTime dateCreated) {
+    public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -109,7 +98,7 @@ public class Order {
         return dateUpdated.toString();
     }
 
-    public void setDateUpdated(ZonedDateTime dateUpdated) {
+    public void setDateUpdated(Timestamp dateUpdated) {
         this.dateUpdated = dateUpdated;
     }
 
@@ -124,7 +113,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
+                "id='" + orderId + '\'' +
                 ", status=" + status +
                 ", customer_id='" + customer_id + '\'' +
                 ", orderItemsList=" + orderItemsList +
