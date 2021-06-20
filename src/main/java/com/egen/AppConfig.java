@@ -1,5 +1,6 @@
 package com.egen;
 
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 
@@ -8,9 +9,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-@Configuration
-@ComponentScan
-@EnableWebMvc
+@SpringBootApplication
 public class AppConfig extends WebMvcConfigurationSupport {
 	//Override addCorsMappings Method to allow cross origin request to API
 
