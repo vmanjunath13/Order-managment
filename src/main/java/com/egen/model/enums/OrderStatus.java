@@ -1,4 +1,4 @@
-package com.egen.model;
+package com.egen.model.enums;
 
 public enum OrderStatus {
     ORDER_IN_PROGRESS,

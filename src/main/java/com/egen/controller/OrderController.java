@@ -1,6 +1,7 @@
 package com.egen.controller;
 
-import com.egen.model.Order;
+import com.egen.model.dto.OrderDto;
+import com.egen.model.entity.Order;
 import com.egen.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class OrderController {
     }
 
     @GetMapping("order/{oid}")
-    public ResponseEntity<Order> getOrderById(@PathVariable(name = "oid") String id) {
-        return ResponseEntity.ok(orderService.getOrderById(id));
+    public void getOrderById(@PathVariable(name = "oid") String id) {
+        System.out.println(orderService.getOrderById(id));
     }
 
     @GetMapping("orderInInterval/{startTime}/{endTime}")

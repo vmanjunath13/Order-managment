@@ -1,32 +1,40 @@
-package com.egen.model;
+package com.egen.model.entity;
+
+import com.egen.model.enums.PaymentMethod;
+import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
 @Entity
+@Data
+@Table(name = "OrderPayment")
 public class OrderPayment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String paymentId;
+    @Column(name = "paymentmethod")
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    private ZonedDateTime paymentDate;
+    @Column(name = "paymentdate")
+    private Timestamp paymentDate;
+    @Column(name = "paymentconfirmationnumber")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String paymentConfirmationNumber;
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(columnDefinition = "addressId")
     private Address billingAddress;
 
     public OrderPayment() {
-        this.paymentId = UUID.randomUUID().toString();
+
     }
 
-    public OrderPayment(PaymentMethod paymentMethod, ZonedDateTime paymentDate, String paymentConfirmationNumber, Address billingAddress) {
-        super();
-        this.paymentId = UUID.randomUUID().toString();
-        this.paymentMethod = paymentMethod;
+    public OrderPayment(Timestamp paymentDate, PaymentMethod paymentMethod, Address address) {
         this.paymentDate = paymentDate;
-        this.paymentConfirmationNumber = paymentConfirmationNumber;
-        this.billingAddress = billingAddress;
+        this.paymentMethod = paymentMethod;
+        this.billingAddress = address;
     }
 
     public String getPaymentId() {
@@ -49,7 +57,7 @@ public class OrderPayment {
         return paymentDate.toString();
     }
 
-    public void setPaymentDate(ZonedDateTime paymentDate) {
+    public void setPaymentDate(Timestamp paymentDate) {
         this.paymentDate = paymentDate;
     }
 

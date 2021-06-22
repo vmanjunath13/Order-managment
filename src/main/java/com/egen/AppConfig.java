@@ -2,6 +2,7 @@ package com.egen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 
@@ -12,14 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @SpringBootApplication
 public class AppConfig extends WebMvcConfigurationSupport {
-	//Override addCorsMappings Method to allow cross origin request to API
-
-    protected void addCorsMappings(CorsRegistry corsRegistry) {
-        super.addCorsMappings(corsRegistry);
-    }
 
     public static void main(String[] args) {
-        SpringApplication springApplication = new SpringApplication(AppConfig.class);
-        springApplication.run();
+        SpringApplication.run(AppConfig.class, args);
     }
 }

@@ -1,27 +1,26 @@
-package com.egen.model;
+package com.egen.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import java.util.UUID;
+import com.egen.model.enums.DeliveryMethod;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
+@Data
+@Table(name = "OrderDelivery")
 public class OrderDelivery {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String deliveryId;
     @Enumerated(EnumType.STRING)
+    @Column(name = "deliveryMethod")
     private DeliveryMethod deliveryMethod;
+    @Column(name = "deliveryCharges")
     private double deliveryCharges;
 
     public OrderDelivery() {
-        this.deliveryId = UUID.randomUUID().toString();
-    }
 
-    public OrderDelivery(double deliveryCharges) {
-        this.deliveryId = UUID.randomUUID().toString();
-        this.deliveryCharges = deliveryCharges;
     }
 
     public String getDeliveryId() {

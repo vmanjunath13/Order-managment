@@ -1,33 +1,30 @@
-package com.egen.model;
+package com.egen.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.UUID;
+import javax.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
+@Table(name = "address")
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String addressId;
+
+    @Column(name = "addressLine1")
     private String addressLine1;
+    @Column(name = "addressLine2")
     private String addressLine2;
+    @Column(name = "city")
     private String city;
+    @Column(name = "state")
     private String state;
+    @Column(name = "zip")
     private String postalCode;
 
     public Address() {
         super();
-        this.addressId = UUID.randomUUID().toString();
-    }
-
-    public Address(String addressLine1, String addressLine2, String city, String state, String postalCode) {
-        super();
-        this.addressId = UUID.randomUUID().toString();
-        this.addressLine1 = addressLine1;
-        this.addressLine2 = addressLine2;
-        this.city = city;
-        this.state = state;
-        this.postalCode = postalCode;
     }
 
     public String getAddressId() {

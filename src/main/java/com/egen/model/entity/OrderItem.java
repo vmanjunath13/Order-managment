@@ -1,30 +1,44 @@
-package com.egen.model;
+package com.egen.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.UUID;
+import lombok.Data;
+
+import javax.persistence.*;
 
 @Entity
-public class OrderItems {
+@Data
+@Table(name = "OrderItems")
+public class OrderItem {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String itemId;
+
+    @Column(name = "itemName")
     private String itemName;
+
+    @Column(name = "itemQty")
     private int itemQty;
+
+    @Column(name = "subtotal")
     private double subtotal;
+
+    @Column(name = "tax")
     private double tax;
+
+    @Column(name = "total")
     private double total;
 
-    public OrderItems() {
-        super();
-        this.itemId = UUID.randomUUID().toString();
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id")
+    private Order orders;
+
+    public OrderItem() {
     }
 
-    public OrderItems(String itemName, int itemQty, double tax, double total) {
-        super();
-        this.itemId = UUID.randomUUID().toString();
+    public OrderItem(String itemName, int itemQty, double subtotal, double tax, double total) {
         this.itemName = itemName;
         this.itemQty = itemQty;
+        this.subtotal = subtotal;
         this.tax = tax;
         this.total = total;
     }
@@ -77,18 +91,36 @@ public class OrderItems {
         this.subtotal = this.subtotal + (this.tax/100)*this.subtotal;
     }
 
-    public static double sumOfItemTotal(OrderItems o1, OrderItems o2) {
+    public static double sumOfItemTotal(OrderItem o1, OrderItem o2) {
         return o1.getSubtotal() + o2.getSubtotal();
+    }
+
+    public void setItemQty(int itemQty) {
+        this.itemQty = itemQty;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public Order getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Order orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
-        return "OrderItems{" +
-                "itemName='" + itemName + '\'' +
+        return "OrderItem{" +
+                "itemId='" + itemId + '\'' +
+                ", itemName='" + itemName + '\'' +
                 ", itemQty=" + itemQty +
                 ", subtotal=" + subtotal +
                 ", tax=" + tax +
                 ", total=" + total +
+                ", orders=" + orders +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package com.egen.model;
+package com.egen.model.enums;
 
 public enum DeliveryMethod {
     ORDER_DELIVERY,
