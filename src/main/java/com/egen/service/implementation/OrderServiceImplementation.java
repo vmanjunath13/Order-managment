@@ -18,11 +18,11 @@ import java.util.*;
 @Service
 public class OrderServiceImplementation implements OrderService {
 
-    final OrderRepository orderRepository;
-    final OrderItemService orderItemService;
-    final CustomerService customerService;
-    final AddressService addressService;
-    final OrderPaymentService paymentService;
+    OrderRepository orderRepository;
+    OrderItemService orderItemService;
+    CustomerService customerService;
+    AddressService addressService;
+    OrderPaymentService paymentService;
 
     public OrderServiceImplementation(OrderRepository orderRepository, OrderItemService orderItemService, CustomerService customerService, AddressService addressService, OrderPaymentService paymentService) {
         this.orderRepository = orderRepository;
@@ -30,6 +30,10 @@ public class OrderServiceImplementation implements OrderService {
         this.customerService = customerService;
         this.addressService = addressService;
         this.paymentService = paymentService;
+    }
+
+    public OrderServiceImplementation() {
+
     }
 
     @Transactional(readOnly = true)

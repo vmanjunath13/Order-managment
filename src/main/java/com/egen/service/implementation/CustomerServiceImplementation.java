@@ -14,10 +14,14 @@ import java.util.Optional;
 @Service
 public class CustomerServiceImplementation implements CustomerService {
 
-    final CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
 
     public CustomerServiceImplementation(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+    }
+
+    public CustomerServiceImplementation() {
+
     }
 
     @Transactional(readOnly = true)

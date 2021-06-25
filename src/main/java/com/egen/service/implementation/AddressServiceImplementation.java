@@ -13,10 +13,14 @@ import java.util.Optional;
 @Service
 public class AddressServiceImplementation implements AddressService {
 
-    final AddressRepository addressRepository;
+    AddressRepository addressRepository;
 
     public AddressServiceImplementation(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
+    }
+
+    public AddressServiceImplementation() {
+
     }
 
     @Transactional(readOnly = true)

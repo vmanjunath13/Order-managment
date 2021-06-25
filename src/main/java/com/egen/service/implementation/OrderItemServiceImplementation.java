@@ -14,10 +14,14 @@ import java.util.Optional;
 @Service
 public class OrderItemServiceImplementation implements OrderItemService {
 
-    final OrderItemRepository orderItemRepository;
+    OrderItemRepository orderItemRepository;
 
     public OrderItemServiceImplementation(OrderItemRepository orderItemRepository) {
         this.orderItemRepository = orderItemRepository;
+    }
+
+    public OrderItemServiceImplementation() {
+
     }
 
     @Transactional

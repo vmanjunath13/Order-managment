@@ -16,10 +16,14 @@ import java.util.List;
 @Service
 public class OrderPaymentServiceImplementation implements OrderPaymentService {
 
-    final OrderPaymentRepository orderPaymentRepository;
+    OrderPaymentRepository orderPaymentRepository;
 
     public OrderPaymentServiceImplementation(OrderPaymentRepository orderPaymentRepository) {
         this.orderPaymentRepository = orderPaymentRepository;
+    }
+
+    public OrderPaymentServiceImplementation() {
+
     }
 
     @Transactional
