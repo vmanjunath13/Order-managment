@@ -43,7 +43,7 @@ public class OrderServiceImplementation implements OrderService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<Order> getOrderById(String orderId) {
+    public Order getOrderById(String orderId) {
         return Optional.ofNullable(orderRepository.findById(orderId)).orElseThrow(
                 () -> new OrderServiceException("Currently there are no orders! Place one right away!"));
     }

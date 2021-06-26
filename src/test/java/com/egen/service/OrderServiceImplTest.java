@@ -187,7 +187,7 @@ public class OrderServiceImplTest {
 
     @Test
     public void findOne() throws Exception {
-        Optional<Order> current_order = orderService.getOrderById(orders.get(0).getOrderId());
+        Optional<Order> current_order = Optional.ofNullable(orderService.getOrderById(orders.get(0).getOrderId()));
         System.out.println(current_order.toString());
         Assert.assertEquals("Order id should match",orders.get(0), current_order);
     }
@@ -226,7 +226,7 @@ public class OrderServiceImplTest {
     @Test
     @Transactional
     public void createOrder() {
-        Order create_order = orderService.placeOrder(new_order);
+        boolean create_order = orderService.placeOrder(new_order);
         Assert.assertEquals("Failed to create order",create_order, create_order);
     }
 
